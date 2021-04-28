@@ -42,4 +42,11 @@ const pricesArr [
   }
 ];
 
-
+function renderItems(items,) {
+  ul.innerHTML = items.map(item => `
+  <li>
+  <>
+    id="${item.name}">${item.name} ${item.price}
+  </h3>
+  </li>`,).join('');
+}
