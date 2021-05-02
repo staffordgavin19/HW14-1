@@ -59,6 +59,27 @@ function renderItems(maxPrice) {
 
 renderItems(pricesArr);
 
+document
+  .querySelector('#checkbox')
+  .addEventListener('change', ({ target: { checked } }) => {
+    let stockArrFiltered = pricesArr.filter(
+      product => product.stocked === true,
+    );
+
+    if (checked === false) {
+      stockArrFiltered = pricesArr;
+    }
+
+    renderItems(stockArrFiltered);
+  });
+
+document.querySelector('#searchName').addEventListener('keyup', event => {
+  const pricesArrSearchName = pricesArr.filter(
+    product => product.name.toLowerCase().includes(event.target.value), // used MDN for includes
+  );
+  renderItems(pricesArrSearchName);
+});
+
 sliderBar.addEventListener('input', event => {
   renderItems(pricesArr, Number(event.target.value));
 });
