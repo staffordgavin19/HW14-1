@@ -42,21 +42,25 @@ const pricesArr = [
   },
 ];
 
-function renderItems(items) {
-  ul.innerHTML = items
+function renderItems(maxPrice) {
+  const pricesArrFiltered = maxPrice
+    ? pricesArr.filter(({ price }) => price.slice(1) < maxPrice)
+    : pricesArr;
+
+  ul.innerHTML = pricesArrFiltered
     .map(
-      item => `
+      ({ name, price }) => `
   <li>
-  <>
-    id="${item.name}">${item.name} ${item.price}
-  </h3>
+    ${name} - ${price}}
   </li>`,
     )
     .join('');
 }
 
+renderItems(pricesArr);
+
 sliderBar.addEventListener('input', event => {
-  renderItems(pricesArr, event.target.value);
+  renderItems(pricesArr, Number(event.target.value));
 });
 
 // Not sure how to implement the maxPrice
