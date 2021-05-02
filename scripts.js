@@ -62,5 +62,3 @@ renderItems(pricesArr);
 sliderBar.addEventListener('input', event => {
   renderItems(pricesArr, Number(event.target.value));
 });
-
-// Not sure how to implement the maxPrice
